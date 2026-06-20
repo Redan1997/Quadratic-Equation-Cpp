@@ -5,11 +5,11 @@
 #include <cstddef>
 #include <iostream>
 class Equation {
-    double a;//should not be zero at anycost
-    double b;
-    double c;
-    double *solutions;
+    double m_a;//should not be zero at anycost
+    double m_b;
+    double m_c;
     std::size_t solutions_size;
+    double *solutions;
 public:
     double get_a()const;
     double get_b()const;
@@ -24,8 +24,8 @@ public:
     ~Equation();
     Equation(const Equation& other);//copy
     Equation(Equation&& other)noexcept;//move
-    Equation & operator=(const Equation& other);//assignment
-    Equation & operator=(Equation&& other)noexcept;//move assignment
+    Equation& operator=(const Equation& other);//assignment
+    Equation& operator=(Equation&& other)noexcept;//move assignment
 
     friend std::ostream& operator <<(std::ostream& out,const Equation& q);
 
