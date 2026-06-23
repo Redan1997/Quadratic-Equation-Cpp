@@ -16,9 +16,12 @@ void Equation::update_solutions(){
     else if(discriminant==0.0){// 1sloution
         solutions_size=1;
         solutions[0]=-m_b/(2.0*m_a);
+        solutions[1]=0.0;//not used but just to be safe,should not be accessed by user since solutions_size=1
     }
     else{//no real sloution
         solutions_size=0;
+        solutions[0]=0.0;//clean old value
+        solutions[1]=0.0;
     }
 }
 
@@ -31,7 +34,7 @@ Equation::Equation(double a,double b,double c)
     {
         if(m_a==0.0)
             throw std::invalid_argument("a cant be zero\n");
-        solutions=new double[2];//allocate 2 doubles. its user responsibility to check the size of the array before accessing it
+        solutions=new double[2]{0.0,0.0};//allocate 2 doubles. its user responsibility to check the size of the array before accessing it
         update_solutions();
     }
 Equation::~Equation(){
@@ -43,7 +46,7 @@ Equation::Equation(const Equation& other)//copy ctor
     ,m_b{other.m_b}
     ,m_c{other.m_c}
     ,solutions_size{other.solutions_size}
-    ,solutions{new double[2]}
+    ,solutions{new double[2]{0.0,0.0}}//add safe guard
 {
     solutions[0]=other.solutions[0];//copy the solutions
     solutions[1]=other.solutions[1];
