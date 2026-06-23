@@ -10,6 +10,7 @@ class Equation {
     double m_c;
     std::size_t solutions_size;
     double *solutions;
+    void update_solutions();
 public:
     double get_a()const;
     double get_b()const;
@@ -30,9 +31,9 @@ public:
     friend std::ostream& operator <<(std::ostream& out,const Equation& q);
 
     Equation operator+(const Equation& other) const;//for obj+obj
-    Equation operator+(double)  const;//for obj+double
+    Equation operator+(double c)  const;//for obj+double
 
-    friend Equation operator+(double a,const Equation& q);//for double+obj
+    friend Equation operator+(double c,const Equation& other);//for double+obj
 };
 
 #endif // EQUATION_HPP
